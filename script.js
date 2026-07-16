@@ -1,46 +1,5 @@
 // ===============================
-// EFEITO DE DIGITAÇÃO
-// ===============================
-
-
-const titulo = document.querySelector(".conteudo h2");
-
-
-const texto = 
-"Business Intelligence | Análise de Dados | Gestão";
-
-
-let index = 0;
-
-
-titulo.innerHTML = "";
-
-
-
-function escreverTexto(){
-
-    if(index < texto.length){
-
-        titulo.innerHTML += texto.charAt(index);
-
-        index++;
-
-        setTimeout(escreverTexto, 50);
-
-    }
-
-}
-
-
-escreverTexto();
-
-
-
-
-
-
-// ===============================
-// ANIMAÇÃO AO SCROLL
+// ANIMAÇÃO DE ENTRADA DAS SEÇÕES
 // ===============================
 
 
@@ -50,31 +9,26 @@ const elementos = document.querySelectorAll(
 
 
 
-function mostrarElementos(){
-
+function revelarElementos(){
 
     elementos.forEach(elemento => {
 
 
-        const posicao = elemento.getBoundingClientRect().top;
+        const altura = elemento.getBoundingClientRect().top;
 
 
-        const alturaTela = window.innerHeight;
+        const tela = window.innerHeight;
 
 
 
-        if(posicao < alturaTela - 100){
-
+        if(altura < tela - 100){
 
             elemento.classList.add("mostrar");
-
 
         }
 
 
     });
-
-
 
 }
 
@@ -82,12 +36,12 @@ function mostrarElementos(){
 
 window.addEventListener(
     "scroll",
-    mostrarElementos
+    revelarElementos
 );
 
 
 
-mostrarElementos();
+revelarElementos();
 
 
 
@@ -97,13 +51,57 @@ mostrarElementos();
 
 
 // ===============================
-// ANO AUTOMÁTICO FOOTER
+// EFEITO SUAVE NOS LINKS DO MENU
 // ===============================
 
 
+const links = document.querySelectorAll(
+    "nav a"
+);
 
-const ano = new Date().getFullYear();
 
+
+links.forEach(link => {
+
+
+    link.addEventListener(
+        "click",
+        function(e){
+
+
+            e.preventDefault();
+
+
+            const destino = document.querySelector(
+                this.getAttribute("href")
+            );
+
+
+
+            destino.scrollIntoView({
+
+                behavior:"smooth"
+
+            });
+
+
+
+        }
+    );
+
+
+});
+
+
+
+
+
+
+
+
+// ===============================
+// ANO AUTOMÁTICO DO FOOTER
+// ===============================
 
 
 const footer = document.querySelector("footer p");
@@ -111,6 +109,9 @@ const footer = document.querySelector("footer p");
 
 
 if(footer){
+
+    const ano = new Date().getFullYear();
+
 
     footer.innerHTML =
     `© ${ano} Ygor Gabriel | Portfólio`;
@@ -129,7 +130,6 @@ if(footer){
 // ===============================
 
 
-
 const cards = document.querySelectorAll(".card");
 
 
@@ -141,8 +141,10 @@ cards.forEach(card => {
         "mouseenter",
         () => {
 
-            card.style.transform =
-            "translateY(-12px) scale(1.03)";
+
+            card.style.boxShadow =
+            "0 15px 35px rgba(63,169,245,0.25)";
+
 
         }
     );
@@ -153,52 +155,13 @@ cards.forEach(card => {
         "mouseleave",
         () => {
 
-            card.style.transform =
-            "translateY(0) scale(1)";
 
-        }
-    );
-
-
-
-});
-
-
-
-
-
-
-
-
-// ===============================
-// MENU MOBILE
-// ===============================
-
-
-
-const links = document.querySelectorAll(
-    "nav a"
-);
-
-
-
-links.forEach(link => {
-
-
-    link.addEventListener(
-        "click",
-        () => {
-
-
-            window.scrollTo({
-
-                behavior:"smooth"
-
-            });
+            card.style.boxShadow =
+            "none";
 
 
         }
     );
 
 
-});
+}); 
