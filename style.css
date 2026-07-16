@@ -1,233 +1,304 @@
-/* ==========================
+/* ===================================
    GOOGLE FONTS
-========================== */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+=================================== */
 
-/* ==========================
-   CONFIGURAÇÕES GERAIS
-========================== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ===================================
+   VARIÁVEIS
+=================================== */
+
+:root{
+
+    --primary:#B79CED;
+    --primary-dark:#9A7AD9;
+    --primary-light:#EEE7FA;
+
+    --gold:#D8B46A;
+
+    --white:#ffffff;
+    --background:#FAFAFC;
+
+    --title:#2D2538;
+    --text:#6A6275;
+
+    --border:#ECE7F4;
+
+    --shadow:
+    0 15px 40px rgba(0,0,0,.08);
+
+}
+
+/* ===================================
+RESET
+=================================== */
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins', sans-serif;
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+
 }
 
 html{
-    scroll-behavior:smooth;
+
+scroll-behavior:smooth;
+
 }
 
 body{
-    background-color:#0F172A;   /* Cor do fundo */
-    color:#FFFFFF;              /* Cor do texto */
+
+font-family:'Poppins',sans-serif;
+
+background:var(--background);
+
+color:var(--text);
+
+overflow-x:hidden;
+
 }
 
-/* ==========================
-   CABEÇALHO
-========================== */
+a{
+
+text-decoration:none;
+
+}
+
+ul{
+
+list-style:none;
+
+}
+
+img{
+
+max-width:100%;
+
+display:block;
+
+}
+
+/* ===================================
+NAVBAR
+=================================== */
 
 header{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    padding:20px 8%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:#0F172A;
-    border-bottom:1px solid #1E293B;
-    z-index:1000;
+
+position:fixed;
+
+width:100%;
+
+top:0;
+
+left:0;
+
+z-index:999;
+
+transition:.4s;
+
 }
 
-/* ==========================
-   LOGO
-========================== */
+.navbar{
+
+max-width:1200px;
+
+height:90px;
+
+margin:auto;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:0 30px;
+
+}
 
 .logo{
-    font-size:32px;
-    font-weight:bold;
-    color:#3B82F6;
+
+height:70px;
+
 }
 
-/* ==========================
-   MENU
-========================== */
+.navbar ul{
 
-nav{
-    display:flex;
-    gap:35px;
+display:flex;
+
+gap:40px;
+
 }
 
-nav a{
-    text-decoration:none;
-    color:white;
-    font-size:18px;
-    transition:.3s;
+.navbar ul li a{
+
+color:white;
+
+font-weight:500;
+
+transition:.3s;
+
 }
 
-nav a:hover{
-    color:#38BDF8;
+.navbar ul li a:hover{
+
+color:var(--gold);
+
 }
 
-/* ==========================
-   SEÇÕES
-========================== */
+.btn-nav{
 
-section{
-    min-height:100vh;
-    padding:120px 8%;
+padding:12px 30px;
+
+border-radius:40px;
+
+background:var(--primary);
+
+color:white;
+
+font-weight:600;
+
+transition:.3s;
+
 }
 
-/* ==========================
-   INÍCIO
-========================== */
+.btn-nav:hover{
 
-#inicio{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
+background:var(--primary-dark);
+
+transform:translateY(-3px);
+
 }
 
-#inicio h1{
-    font-size:60px;
-    color:white;
-    margin-bottom:15px;
+/* ===================================
+HERO
+=================================== */
+
+.hero{
+
+height:100vh;
+
+background:
+
+linear-gradient(
+
+rgba(42,27,61,.65),
+
+rgba(109,74,161,.35)
+
+),
+
+url("imagens/banner.jpg");
+
+background-size:cover;
+
+background-position:center;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+text-align:center;
+
+position:relative;
+
 }
 
-#inicio h2{
-    font-size:32px;
-    color:#38BDF8;
-    margin-bottom:20px;
+.hero-content{
+
+max-width:800px;
+
+padding:20px;
+
+color:white;
+
 }
 
-#inicio p{
-    max-width:700px;
-    font-size:18px;
-    line-height:1.8;
-    color:#CBD5E1;
+.hero h1{
+
+font-family:"Playfair Display",serif;
+
+font-size:70px;
+
+line-height:1.1;
+
+margin-bottom:25px;
+
 }
 
-/* ==========================
-   BOTÃO
-========================== */
+.hero p{
 
-.btn{
-    display:inline-block;
-    width:220px;
-    margin-top:35px;
-    padding:15px;
-    background:#2563EB;
-    color:white;
-    text-align:center;
-    text-decoration:none;
-    border-radius:8px;
-    transition:.3s;
+font-size:20px;
+
+line-height:35px;
+
+margin-bottom:40px;
+
 }
 
-.btn:hover{
-    background:#1D4ED8;
+.botoes{
+
+display:flex;
+
+justify-content:center;
+
+gap:20px;
+
+flex-wrap:wrap;
+
 }
 
-/* ==========================
-   TÍTULOS
-========================== */
+/* ===================================
+BOTÕES
+=================================== */
 
-h2{
-    font-size:42px;
-    color:#38BDF8;
-    margin-bottom:30px;
+.btn-principal{
+
+background:var(--primary);
+
+padding:16px 40px;
+
+border-radius:50px;
+
+color:white;
+
+font-weight:600;
+
+transition:.4s;
+
+box-shadow:var(--shadow);
+
 }
 
-/* ==========================
-   SOBRE
-========================== */
+.btn-principal:hover{
 
-#sobre p{
-    max-width:1000px;
-    font-size:18px;
-    line-height:2;
-    color:#CBD5E1;
+background:var(--primary-dark);
+
+transform:translateY(-5px);
+
 }
 
-/* ==========================
-   PROJETOS
-========================== */
+.btn-secundario{
 
-.projetos{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:25px;
+padding:16px 40px;
+
+border:2px solid white;
+
+border-radius:50px;
+
+color:white;
+
+transition:.4s;
+
 }
 
-/* ==========================
-   CARDS
-========================== */
+.btn-secundario:hover{
 
-.card{
-    background:#1E293B;
-    border-radius:15px;
-    padding:25px;
-    transition:.3s;
-}
+background:white;
 
-.card:hover{
-    transform:translateY(-10px);
-}
+color:var(--title);
 
-.card h3{
-    color:#38BDF8;
-    margin-bottom:15px;
-}
-
-.card p{
-    color:#CBD5E1;
-    line-height:1.8;
-}
-
-/* ==========================
-   CONTATO
-========================== */
-
-#contato p{
-    font-size:20px;
-    margin-bottom:20px;
-}
-
-#contato a{
-    color:#38BDF8;
-    text-decoration:none;
-}
-
-#contato a:hover{
-    text-decoration:underline;
-}
-
-/* ==========================
-   RODAPÉ
-========================== */
-
-footer{
-    text-align:center;
-    padding:30px;
-    border-top:1px solid #1E293B;
-    color:#94A3B8;
-}
-
-/* ==========================
-   BARRA DE ROLAGEM
-========================== */
-
-::-webkit-scrollbar{
-    width:10px;
-}
-
-::-webkit-scrollbar-track{
-    background:#0F172A;
-}
-
-::-webkit-scrollbar-thumb{
-    background:#3B82F6;
-    border-radius:20px;
 }
