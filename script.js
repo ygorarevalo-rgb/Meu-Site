@@ -1,172 +1,84 @@
-// =====================================
-// SWIPER
-// =====================================
+// Animação de aparecimento ao rolar a página
 
-const swiper = new Swiper(".mySwiper", {
+const elementos = document.querySelectorAll(
+    "section, .card"
+);
 
-    loop: true,
 
-    centeredSlides: true,
+function aparecerAoScroll(){
 
-    spaceBetween: 30,
+    elementos.forEach(elemento => {
 
-    grabCursor: true,
+        const alturaTela = window.innerHeight;
 
-    autoplay: {
+        const distanciaTopo = elemento.getBoundingClientRect().top;
 
-        delay: 3000,
 
-        disableOnInteraction: false,
+        if(distanciaTopo < alturaTela - 100){
 
-    },
-
-    pagination: {
-
-        el: ".swiper-pagination",
-
-        clickable: true,
-
-    },
-
-    breakpoints: {
-
-        0: {
-
-            slidesPerView: 1,
-
-        },
-
-        768: {
-
-            slidesPerView: 2,
-
-        },
-
-        1200: {
-
-            slidesPerView: 3,
-
-        }
-
-    }
-
-});
-
-// =====================================
-// NAVBAR AO ROLAR A PÁGINA
-// =====================================
-
-const header = document.querySelector("header");
-
-window.addEventListener("scroll", () => {
-
-    if(window.scrollY > 60){
-
-        header.style.background = "rgba(255,255,255,.95)";
-        header.style.backdropFilter = "blur(12px)";
-        header.style.boxShadow = "0 8px 25px rgba(0,0,0,.08)";
-
-        document.querySelectorAll(".navbar a").forEach(link=>{
-
-            link.style.color="#2D2538";
-
-        });
-
-    }
-
-    else{
-
-        header.style.background="transparent";
-        header.style.boxShadow="none";
-
-        document.querySelectorAll(".navbar a").forEach(link=>{
-
-            link.style.color="white";
-
-        });
-
-    }
-
-});
-
-// =====================================
-// ANIMAÇÃO DOS CARDS
-// =====================================
-
-const cards = document.querySelectorAll(".card");
-
-cards.forEach((card,index)=>{
-
-    card.style.opacity="0";
-
-    card.style.transform="translateY(50px)";
-
-    card.style.transition=`.6s ${index*0.15}s`;
-
-});
-
-const observer = new IntersectionObserver((entries)=>{
-
-    entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-            entry.target.style.opacity="1";
-            entry.target.style.transform="translateY(0)";
+            elemento.classList.add("mostrar");
 
         }
 
     });
 
-});
+}
 
-cards.forEach(card=>{
 
-    observer.observe(card);
+window.addEventListener(
+    "scroll",
+    aparecerAoScroll
+);
 
-});
 
-// =====================================
-// ANIMAÇÃO DA HERO
-// =====================================
+aparecerAoScroll();
 
-window.addEventListener("load",()=>{
 
-    const hero = document.querySelector(".hero-content");
 
-    hero.style.opacity="0";
 
-    hero.style.transform="translateY(40px)";
 
-    hero.style.transition=".9s";
+// Efeito de digitação no título
 
-    setTimeout(()=>{
+const texto = "Analista de Dados | Business Intelligence | Desenvolvedor Front-End";
 
-        hero.style.opacity="1";
-        hero.style.transform="translateY(0)";
+const titulo = document.querySelector(".principal h2");
 
-    },300);
 
-});
+let index = 0;
 
-// =====================================
-// EFEITO NOS BOTÕES
-// =====================================
 
-const botoes=document.querySelectorAll(".btn-principal,.btn-nav");
+function escrever(){
 
-botoes.forEach(botao=>{
+    if(index < texto.length){
 
-    botao.addEventListener("mouseenter",()=>{
+        titulo.innerHTML += texto.charAt(index);
 
-        botao.style.boxShadow="0 18px 35px rgba(183,156,237,.45)";
+        index++;
 
-    });
+        setTimeout(escrever, 50);
 
-    botao.addEventListener("mouseleave",()=>{
+    }
 
-        botao.style.boxShadow="";
+}
 
-    });
 
-});
+
+// limpa o texto original antes da animação
+
+titulo.innerHTML = "";
+
+escrever();
+
+
+
+
+
+
+// Ano automático no rodapé
+
+const ano = new Date().getFullYear();
+
+
+document.querySelector("footer p").innerHTML =
+
+`© ${ano} Ygor Gabriel | Portfólio`;
