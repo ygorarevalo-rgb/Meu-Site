@@ -1,53 +1,23 @@
-// Animação de aparecimento ao rolar a página
-
-const elementos = document.querySelectorAll(
-    "section, .card"
-);
+// ===============================
+// EFEITO DE DIGITAÇÃO
+// ===============================
 
 
-function aparecerAoScroll(){
-
-    elementos.forEach(elemento => {
-
-        const alturaTela = window.innerHeight;
-
-        const distanciaTopo = elemento.getBoundingClientRect().top;
+const titulo = document.querySelector(".conteudo h2");
 
 
-        if(distanciaTopo < alturaTela - 100){
-
-            elemento.classList.add("mostrar");
-
-        }
-
-    });
-
-}
-
-
-window.addEventListener(
-    "scroll",
-    aparecerAoScroll
-);
-
-
-aparecerAoScroll();
-
-
-
-
-
-// Efeito de digitação no título
-
-const texto = "Analista de Dados | Business Intelligence | Desenvolvedor Front-End";
-
-const titulo = document.querySelector(".principal h2");
+const texto = 
+"Business Intelligence | Análise de Dados | Gestão";
 
 
 let index = 0;
 
 
-function escrever(){
+titulo.innerHTML = "";
+
+
+
+function escreverTexto(){
 
     if(index < texto.length){
 
@@ -55,30 +25,180 @@ function escrever(){
 
         index++;
 
-        setTimeout(escrever, 50);
+        setTimeout(escreverTexto, 50);
 
     }
 
 }
 
 
-
-// limpa o texto original antes da animação
-
-titulo.innerHTML = "";
-
-escrever();
+escreverTexto();
 
 
 
 
 
 
-// Ano automático no rodapé
+// ===============================
+// ANIMAÇÃO AO SCROLL
+// ===============================
+
+
+const elementos = document.querySelectorAll(
+    "section, .card, .certificado"
+);
+
+
+
+function mostrarElementos(){
+
+
+    elementos.forEach(elemento => {
+
+
+        const posicao = elemento.getBoundingClientRect().top;
+
+
+        const alturaTela = window.innerHeight;
+
+
+
+        if(posicao < alturaTela - 100){
+
+
+            elemento.classList.add("mostrar");
+
+
+        }
+
+
+    });
+
+
+
+}
+
+
+
+window.addEventListener(
+    "scroll",
+    mostrarElementos
+);
+
+
+
+mostrarElementos();
+
+
+
+
+
+
+
+
+// ===============================
+// ANO AUTOMÁTICO FOOTER
+// ===============================
+
+
 
 const ano = new Date().getFullYear();
 
 
-document.querySelector("footer p").innerHTML =
 
-`© ${ano} Ygor Gabriel | Portfólio`;
+const footer = document.querySelector("footer p");
+
+
+
+if(footer){
+
+    footer.innerHTML =
+    `© ${ano} Ygor Gabriel | Portfólio`;
+
+}
+
+
+
+
+
+
+
+
+// ===============================
+// EFEITO NOS CARDS
+// ===============================
+
+
+
+const cards = document.querySelectorAll(".card");
+
+
+
+cards.forEach(card => {
+
+
+    card.addEventListener(
+        "mouseenter",
+        () => {
+
+            card.style.transform =
+            "translateY(-12px) scale(1.03)";
+
+        }
+    );
+
+
+
+    card.addEventListener(
+        "mouseleave",
+        () => {
+
+            card.style.transform =
+            "translateY(0) scale(1)";
+
+        }
+    );
+
+
+
+});
+
+
+
+
+
+
+
+
+// ===============================
+// MENU MOBILE
+// ===============================
+
+
+
+const links = document.querySelectorAll(
+    "nav a"
+);
+
+
+
+links.forEach(link => {
+
+
+    link.addEventListener(
+        "click",
+        () => {
+
+
+            window.scrollTo({
+
+                behavior:"smooth"
+
+            });
+
+
+        }
+    );
+
+
+});
