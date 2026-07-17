@@ -161,7 +161,7 @@ animarSkills();
         EFEITO DE DIGITAÇÃO
 ========================================== */
 
-const texto = "Transformando dados em soluções estratégicas.";
+const texto = "Business Intelligence • Power BI • Análise de Dados";
 
 const titulo = document.querySelector(".hero h2");
 
