@@ -1,36 +1,51 @@
-// ================================
-// ANO AUTOMÁTICO NO RODAPÉ
-// ================================
+/* ==========================================
+            SCROLL SUAVE
+========================================== */
 
-const footer = document.querySelector("footer p");
+document.querySelectorAll('a[href^="#"]').forEach(link => {
 
-const ano = new Date().getFullYear();
+    link.addEventListener("click", function(e){
 
-footer.innerHTML = 
-`© ${ano} Ygor Gabriel Arevalo | Business Intelligence & Dados`;
+        e.preventDefault();
 
+        const destino = document.querySelector(this.getAttribute("href"));
 
+        if(destino){
 
-// ================================
-// ANIMAÇÃO AO ROLAR A PÁGINA
-// ================================
+            destino.scrollIntoView({
 
-const sections = document.querySelectorAll("section");
+                behavior:"smooth"
 
+            });
 
-function mostrarSecoes(){
+        }
 
-    const alturaTela = window.innerHeight;
+    });
 
-
-    sections.forEach(secao => {
-
-        const distancia = secao.getBoundingClientRect().top;
+});
 
 
-        if(distancia < alturaTela - 100){
+/* ==========================================
+        ANIMAÇÃO DOS CARDS
+========================================== */
 
-            secao.classList.add("show");
+const elementos = document.querySelectorAll(
+
+".card, .bi-card, .experiencia-card, .projeto, .contato-card"
+
+);
+
+function aparecer(){
+
+    elementos.forEach(el=>{
+
+        const topo = el.getBoundingClientRect().top;
+
+        const altura = window.innerHeight - 100;
+
+        if(topo < altura){
+
+            el.classList.add("show");
 
         }
 
@@ -38,37 +53,138 @@ function mostrarSecoes(){
 
 }
 
+window.addEventListener("scroll", aparecer);
 
-window.addEventListener("scroll", mostrarSecoes);
-
-mostrarSecoes();
-
+aparecer();
 
 
-// ================================
-// MENU ATIVO
-// ================================
+/* ==========================================
+      MENU ATIVO CONFORME A SEÇÃO
+========================================== */
 
-const links = document.querySelectorAll("nav a");
+const secoes = document.querySelectorAll("section");
 
+const navLinks = document.querySelectorAll("header nav a");
 
-links.forEach(link=>{
+window.addEventListener("scroll", ()=>{
 
+    let atual = "";
 
-    link.addEventListener("click",()=>{
+    secoes.forEach(sec=>{
 
+        const top = window.scrollY;
 
-        links.forEach(item=>{
+        const offset = sec.offsetTop - 180;
 
-            item.style.color="#cbd5e1";
+        const altura = sec.offsetHeight;
 
-        });
+        if(top >= offset){
 
+            atual = sec.getAttribute("id");
 
-        link.style.color="#38bdf8";
-
+        }
 
     });
 
+    navLinks.forEach(link=>{
+
+        link.classList.remove("ativo");
+
+        if(link.getAttribute("href") == "#" + atual){
+
+            link.classList.add("ativo");
+
+        }
+
+    });
 
 });
+
+
+/* ==========================================
+      NAVBAR AO ROLAR
+========================================== */
+
+const header = document.querySelector("header");
+
+window.addEventListener("scroll",()=>{
+
+    if(window.scrollY > 50){
+
+        header.style.padding="18px 10%";
+
+        header.style.background="rgba(11,17,32,.97)";
+
+    }
+
+    else{
+
+        header.style.padding="25px 10%";
+
+        header.style.background="rgba(11,17,32,.90)";
+
+    }
+
+});
+
+
+/* ==========================================
+     BARRAS DE HABILIDADES
+========================================== */
+
+const barras = document.querySelectorAll(".skill-progress");
+
+function animarSkills(){
+
+    barras.forEach(bar=>{
+
+        const largura = bar.dataset.width;
+
+        const topo = bar.getBoundingClientRect().top;
+
+        if(topo < window.innerHeight - 120){
+
+            bar.style.width = largura;
+
+        }
+
+    });
+
+}
+
+window.addEventListener("scroll", animarSkills);
+
+animarSkills();
+
+
+/* ==========================================
+        EFEITO DE DIGITAÇÃO
+========================================== */
+
+const texto = "Transformando dados em soluções estratégicas.";
+
+const titulo = document.querySelector(".hero h2");
+
+if(titulo){
+
+    titulo.innerHTML = "";
+
+    let i = 0;
+
+    function escrever(){
+
+        if(i < texto.length){
+
+            titulo.innerHTML += texto.charAt(i);
+
+            i++;
+
+            setTimeout(escrever,45);
+
+        }
+
+    }
+
+    escrever();
+
+}
